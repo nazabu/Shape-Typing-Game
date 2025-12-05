@@ -1,0 +1,143 @@
+/* Basic layout */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: #f5f6f8;
+    color: #111;
+    text-align: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Generic screen handling */
+  .screen { display: none; padding: 24px; height: 100vh; box-sizing: border-box; }
+  .screen.active { display: block; }
+  
+  /* Instructions list */
+  #instructions-list { display: flex; gap: 18px; justify-content:center; flex-wrap:wrap; margin: 18px 0; }
+  .instr-item { display:flex; align-items:center; gap:8px; background: white; padding:10px 14px; border-radius:10px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+  .keytag { background:#222; color:white; padding:6px 10px; border-radius:6px; font-weight:bold; font-size:14px; }
+  .shape-icon { width:28px; height:28px; display:inline-block; }
+  
+  /* Arrow (style A: strong line + triangle) */
+  .arrow {
+    width: 28px;
+    height: 2px;
+    background: #444;
+    position: relative;
+    display: inline-block;
+    margin: 0 6px;
+  }
+  .arrow::after {
+    content: "";
+    position: absolute;
+    right: -7px;
+    top: -6px;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 10px solid #444;
+  }
+  
+  /* shape icon styles for instructions (vector-like) */
+  .shape-icon.circle { border-radius:50%; background:#3498db; width:28px; height:28px; }
+  .shape-icon.square { background:#2ecc71; width:28px; height:28px; }
+  .shape-icon.triangle { width:0; height:0; border-left:14px solid transparent; border-right:14px solid transparent; border-bottom:28px solid #e67e22; }
+  .shape-icon.star { position:relative; width:28px; height:28px; background:transparent; }
+  .shape-icon.star::before {
+    content: "★";
+    font-size:20px;
+    color:#f1c40f;
+    position:absolute;
+    left:2px;
+    top:2px;
+  }
+  
+  /* Game screen full-bleed */
+  #game-screen {
+    position: relative;
+    height: 100vh;
+    padding: 0;
+    overflow: hidden;
+    background: #ffffff;
+  }
+  
+  /* canvas: take the full viewport */
+  canvas#game-canvas {
+    display:block;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  /* target zone overlay (centered) */
+  #target-zone {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    border: 4px solid rgba(0,0,0,0.6);
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 20;
+  }
+  
+  /* legend (compact horizontal) top-left */
+  #legend {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    z-index: 25;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    background: rgba(255,255,255,0.92);
+    padding: 8px 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  /* small shape mini icons used inside legend */
+  .shape-mini { display:inline-block; width:16px; height:16px; vertical-align:middle; margin-left:6px; }
+  .shape-mini.circle { border-radius:50%; background:#3498db; width:16px; height:16px; }
+  .shape-mini.square { background:#2ecc71; width:16px; height:16px; }
+  .shape-mini.triangle { width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-bottom:16px solid #e67e22; }
+  .shape-mini.star::before { content:"★"; color:#f1c40f; font-size:14px; display:inline-block; line-height:16px; }
+  
+  /* scoreboard top-right */
+  #scoreboard {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 25;
+    background: rgba(0,0,0,0.75);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    min-width: 84px;
+    text-align:center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  }
+  .score-label { font-size:12px; opacity:0.9; }
+  #score-value { font-size:20px; font-weight:700; margin-top:4px; }
+  .time-left { font-size:12px; opacity:0.9; margin-top:6px; }
+  
+  /* finish screen */
+  #finish-screen { display:flex; flex-direction:column; justify-content:center; align-items:center; gap:12px; }
+  
+  /* buttons */
+  button { cursor:pointer; padding:8px 14px; border-radius:8px; border: none; background:#1a73e8; color:white; font-weight:600; }
+  button.secondary { background:#eee; color:#222; }
+  
+  /* flash for incorrect */
+  #target-zone.flash-error { box-shadow: 0 0 0 8px rgba(255,0,0,0.14); border-color: #ff3b30; }
+  
+  /* small responsive tweaks */
+  @media (max-width:640px){
+    .instr-item { padding:8px; }
+    #legend { font-size:12px; gap:8px; padding:6px; }
+    #target-zone { width:120px; height:120px; }
+  }
+  
