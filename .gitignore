@@ -1,0 +1,21 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+
+# Build tools (future-proof)
+dist/
+build/
+
+# Node (if added later)
+node_modules/
+
+# Local environment (if add analytics/backend)
+.env
+
+# Game exports
+*.csv
