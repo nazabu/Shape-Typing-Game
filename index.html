@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shape Reaction Task — Roulette</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Landing -->
+  <div id="landing-screen" class="screen active">
+    <h1>Shape Reaction Task</h1>
+    <p>Press the correct key when the shape appears in the target box.</p>
+    <button id="start-btn">Begin</button>
+  </div>
+
+  <!-- Consent -->
+  <div id="consent-screen" class="screen">
+    <h2>Consent</h2>
+    <p>By clicking agree you consent to participate in this demo task.</p>
+    <button id="agree-btn">I Agree</button>
+  </div>
+
+  <!-- Demographics -->
+  <div id="demographics-screen" class="screen">
+    <h2>Demographics</h2>
+    <form id="demographics-form">
+      <label>Name: <input name="name" /></label>
+      <label>Age: <input name="age" type="number" /></label>
+      <button type="submit">Continue</button>
+    </form>
+  </div>
+
+  <!-- Instructions -->
+  <div id="instructions-screen" class="screen">
+    <h2>Instructions</h2>
+    <p>When a shape appears in the target zone, press the key mapped to that shape. The shape will not move; the trial advances only when you press a key. Wrong keys count as incorrect but still advance the trial. This is a self-paced (player-driven) task.</p>
+
+    <div id="instructions-list">
+      <div class="instr-item">
+        <span class="keytag">D</span>
+        <span class="arrow"></span>
+        <div class="shape-icon circle"></div>
+        <span class="label">Circle — D</span>
+      </div>
+
+      <div class="instr-item">
+        <span class="keytag">F</span>
+        <span class="arrow"></span>
+        <div class="shape-icon triangle"></div>
+        <span class="label">Triangle — F</span>
+      </div>
+
+      <div class="instr-item">
+        <span class="keytag">J</span>
+        <span class="arrow"></span>
+        <div class="shape-icon square"></div>
+        <span class="label">Square — J</span>
+      </div>
+
+      <div class="instr-item">
+        <span class="keytag">K</span>
+        <span class="arrow"></span>
+        <div class="shape-icon star"></div>
+        <span class="label">Star — K</span>
+      </div>
+    </div>
+
+    <div class="instr-actions">
+      <button id="practice-btn">Practice (15s)</button>
+      <button id="main-btn">Start Main Game (60s)</button>
+    </div>
+  </div>
+
+  <!-- Game -->
+  <div id="game-screen" class="screen">
+    <!-- Legend (compact horizontal) -->
+    <div id="legend">
+      <span class="legend-item"><strong>D</strong> <span class="shape-mini circle" aria-hidden="true"></span></span>
+      <span class="legend-item"><strong>F</strong> <span class="shape-mini triangle" aria-hidden="true"></span></span>
+      <span class="legend-item"><strong>J</strong> <span class="shape-mini square" aria-hidden="true"></span></span>
+      <span class="legend-item"><strong>K</strong> <span class="shape-mini star" aria-hidden="true"></span></span>
+    </div>
+
+    <!-- Scoreboard (top-right) -->
+    <div id="scoreboard">
+      <div class="score-label">Correct</div>
+      <div id="score-value">0</div>
+      <div class="time-left" id="time-left">0s</div>
+    </div>
+
+    <!-- Centered target zone overlay -->
+    <div id="target-zone" aria-hidden="true"></div>
+
+    <!-- Canvas -->
+    <canvas id="game-canvas" aria-label="Game canvas"></canvas>
+  </div>
+
+  <!-- Finish -->
+  <div id="finish-screen" class="screen">
+    <h2>Run Complete</h2>
+    <p id="end-correct">Correct: 0</p>
+    <p id="end-accuracy">Accuracy: 0%</p>
+    <div class="finish-actions">
+      <button id="download-btn">Download CSV</button>
+      <button id="restart-btn" class="secondary">Back to Instructions</button>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
